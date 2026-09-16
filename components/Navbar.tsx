@@ -48,21 +48,22 @@ useEffect(() => {
       );
 
     // Get nav items only when the ref exists
-    const navElements = navItemsRef.current?.querySelectorAll(".nav-item");
+    const navElements =
+  navItemsRef.current?.querySelectorAll<HTMLElement>(".nav-item");
 
-    if (navElements && navElements.length > 0) {
-      timeline.from(
-        navElements,
-        {
-          y: -20,
-          opacity: 0,
-          duration: 0.4,
-          stagger: 0.08,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
-    }
+if (navElements?.length) {
+  timeline.from(
+    Array.from(navElements),
+    {
+      y: -20,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.08,
+      ease: "power2.out",
+    },
+    "-=0.3"
+  );
+}
 
     timeline.from(
       ctaRef.current,
